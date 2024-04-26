@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FlaskApp</title>
+    <style>
+        .tweet {
+            padding: 10px;
+            margin: 10px;
+            background-color: #87ccf8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Retweet Results</h1>
+    <hr>
+    <div>
+        <p>{{ tweet['name'] }} <a href="{{url_for('user', user_id = tweet['UserID'])}}">{{ tweet['screen_name'] }}</a> | {{tweet['created_at']}}</p>
+        <p>{{tweet['Text']}}</p>
+    </div>
+    <hr>
+    {% for retweet in retweets %}
+        <div class="tweet">
+            <p>Retweeted by {{ retweet['name'] }} | <a href="{{url_for('user', user_id = retweet['UserID'])}}">@{{retweet['screen_name'] }}</a> on {{retweet['created_at']}}</p>
+        </div>
+    {% endfor %}
+    <p>
+        Search Time: {{search_time}}
+    </p>
+    <p>
+        <form action="{{ url_for('index')}}">
+            <button type="submit">Back to Search</button>
+         </form>
+    </p>
+</body>
+</html>

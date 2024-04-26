@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Top Tweets by Favorite Count</title>
+    <style>
+        body {
+            background-color: #1DA1F2; 
+        }
+        table {
+            width: 80%;
+            border-collapse: separate; 
+            border-spacing: 0; 
+            margin: auto;
+            background-color: #fff;
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 2px solid white; 
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #87ccf8;
+            color: black;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1, p { 
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Top 10 Tweets by Favorite</h1>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>Created At</th>
+                <th>Tweet ID</th>
+                <th>Text</th>
+                <th>Full Text</th>
+                <th>Hashtag</th>
+                <th>User ID</th>
+                <th>Favorite Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tweet in top_tweets %}
+            <tr>
+                <td>{{ tweet['created_at'] }}</td>
+                <td>{{ tweet['TweetID'] }}</td>
+                <td>{{ tweet['Text'] }}</td>
+                <td>{{ tweet['Full_Text'] }}</td>
+                <td>{{ tweet['Hashtag'] }}</td>
+                <td>{{ tweet['UserID'] }}</td>
+                <td>{{ tweet['Favorite_Count'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p style="text-align: center;">
+        Search Time: {{search_time}}
+    </p>
+    <div class="center">
+        <form action="{{ url_for('index')}}">
+            <button type="submit">Back to Search</button>
+         </form>
+    </div>
+</body>
+</html>
